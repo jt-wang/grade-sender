@@ -15,6 +15,8 @@ requirements:
 - **xlrd** (pip install xlrd)
 - **pandas** (pip install pandas)
 
+Clone/download this repo to any place you like.
+
 if you already have python3 installed, you can use the `requirements.txt` as below to install `xlrd` and `pandas` at the same time:
 
 ```shell
