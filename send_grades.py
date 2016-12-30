@@ -40,7 +40,6 @@ def send_grades(sender_addr, mail_password, subject, grades_record):
             smtpObj.connect(mail_host, mail_smtp_port)
             smtpObj.login(mail_username, mail_password)
             smtpObj.sendmail(sender_addr, receiver_addr, message.as_string())
-            print('success: %s' % (receiver_addr))
         except smtplib.SMTPException as e:
             print('fail: %s' % (receiver_addr))
 
