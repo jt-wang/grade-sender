@@ -1,5 +1,6 @@
 import pandas as pd
 import json
+from decimal import Decimal
 
 
 def get_sorted_and_ranked_grades(path_to_grades_excel, id_column, grade_column):
@@ -13,9 +14,24 @@ def get_sorted_and_ranked_grades(path_to_grades_excel, id_column, grade_column):
     sorted_grades['percentage'] = sorted_grades.apply(
         lambda row: row['rank']/len(sorted_grades.index), axis=1)
 
-    records = [{'id': row[id_column], 'grade': row[grade_column],
-                'rank': row['rank'], 'percentage': row['percentage']}
-               for row in [sorted_grades.iloc[index]
-                           for index in range(len(sorted_grades.index))]]
+    raw_records = [{'id': row[id_column], 'grade': row[grade_column],
+                    'rank': row['rank'], 'percentage': row['percentage']}
+                   for row in [sorted_grades.iloc[index]
+                               for index in range(len(sorted_grades.index))]]
 
-    return json.loads(pd.DataFrame(records).reset_index().to_json(orient='records'))
+    temp_records = json.loads(
+        pd.DataFrame(raw_records).reset_index().to_json(orient='records'))
+
+    final_records = []
+
+    for row in temp_records:
+        final_row = {}
+        final_row['id'] = str(row['id']).split('.')[0]
+        final_row['grade'] = '{0:.2f}'.format(Decimal(row['grade']))
+        final_row['rank'] = str(int(str(row['rank']).split('.')[0]))
+        final_row['percentage'] = '{0:.2f}%'.format(
+            Decimal(row['percentage']) * 100)
+
+        final_records.append(final_row)
+
+    return final_records
