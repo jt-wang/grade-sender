@@ -1,4 +1,4 @@
-# README
+# Grade Sender
 
 **This repo is written for Teacher Assitants of Fudan University to send grades to each student respectively with his/her own student-id, grade, rank, and percentage.**
 
