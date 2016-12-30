@@ -28,8 +28,8 @@ def send_grades(sender_addr, mail_password, subject, postscript, grade_records):
 
         receiver_addr = record['id'] + mail_suffix
         message = MIMEText(content, 'plain', mail_encoding)
-        message['From'] = Header(sender_addr, mail_encoding)
-        message['To'] = Header(receiver_addr, mail_encoding)
+        message['From'] = sender_addr
+        message['To'] = receiver_addr
         message['Subject'] = Header(subject, mail_encoding)
 
         try:
