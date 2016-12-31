@@ -5,7 +5,7 @@
 All you need is:
 
 - **a `fudan.edu.cn` email account**
-- **an excel file**, in which their are at least columns for **student-id** and **grade**.
+- **an excel file**, in which there are at least columns for **student-id** and **grade**.
 
 You don't need to manually use Excel to generate ranks or percentages since it has been integrated in this repo leveraging `pandas`. The entire procedure is done in memory therefore there is no change to your excel file or extra file on your disk.
 
