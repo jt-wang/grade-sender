@@ -1,5 +1,7 @@
 # Grade Sender
 
+[![Build Status](https://travis-ci.org/jt-wang/grade-sender.svg?branch=master)](https://travis-ci.org/jt-wang/grade-sender)
+
 **This repo is written for Teacher Assitants of Fudan University to send grades to each student respectively with his/her own student-id, grade, rank, and percentage.**
 
 All you need is:
