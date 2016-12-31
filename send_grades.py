@@ -79,8 +79,8 @@ if __name__ == '__main__':
         except decimal.InvalidOperation as e3:
             print(
                 'something wrong with the grade type or your column name for grade. grade should be number.')
-        except BaseException as e3:
-            print(e3)
+        except BaseException as e4:
+            print(e4)
             traceback.print_exc()
     else:
         print('goodbye.')
