@@ -32,14 +32,22 @@ def send_grades(sender_addr, mail_password, sender_name, subject, postscript, gr
         message['To'] = receiver_addr
         message['Subject'] = Header(subject, mail_encoding)
 
-        try:
+        retry_count = 0
+        retry_max = 3
+        send_success = False
+        while not send_success and retry_count < retry_max:
             smtpObj = smtplib.SMTP()
-            smtpObj.connect(mail_host, mail_smtp_port)
-            smtpObj.login(mail_username, mail_password)
-            smtpObj.sendmail(sender_addr, receiver_addr, message.as_string())
-            print('success: %s' % (receiver_addr))
-        except smtplib.SMTPException as e:
-            print('FAIL: %s, cause: %s' % (receiver_addr, e))
+            try:
+                smtpObj.connect(mail_host, mail_smtp_port)
+                smtpObj.login(mail_username, mail_password)
+                smtpObj.sendmail(sender_addr, receiver_addr, message.as_string())
+                print('success: %s' % (receiver_addr))
+                send_success = True
+            except smtplib.SMTPException as e:
+                print('FAIL: %s, cause: %s' % (receiver_addr, e))
+            finally:
+                smtpObj.close()
+                retry_count += 1
 
 if __name__ == '__main__':
     sender_addr = input('your fudan email address: ')
